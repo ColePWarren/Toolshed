@@ -33,6 +33,7 @@ class PlantInstanceController extends Controller
         $newPlantInstance->birthday = null;
         $newPlantInstance->plantMaturity = '';
 
+        return response($newPlantInstance->jsonSerialize(), Response::HTTP_CREATED);
   }
 
  
@@ -42,9 +43,21 @@ class PlantInstanceController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(Request $request, $id)
   {
-    
+      $plantInstance = PlantInstance::findOrFail($id);
+      
+      if (PlantInstance::validatePlantTypeOwner($id) == false) {
+          return response(null, 203);
+      }  
+      
+      foreach($plantInstance as $key => $value) {
+        $plantInstance[$key] = $request->$key;
+      }
+      
+      $plantType->save();
+
+      return response(null, Response::HTTP_OK);
   }
 
   /**
@@ -55,7 +68,8 @@ class PlantInstanceController extends Controller
    */
   public function destroy($id)
   {
-    
+      PlantInstance::destroy($id);
+      return response(null, Response::HTTP_OK);
   }
   
 }
