@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PlantType extends Model
 {
-    private function validatePlantTypeOwner($plantTypeId) {
+    public function validatePlantTypeOwner($plantTypeId) {
       $user = auth()->user();
       $plantType = PlantType::findOrFail($plantTypeId);
   
