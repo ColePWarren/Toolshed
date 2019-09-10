@@ -49,7 +49,6 @@ class PlantTypeController extends Controller
 
   }
 
-
   /**
    * Update the specified resource in storage.
    *
@@ -58,11 +57,10 @@ class PlantTypeController extends Controller
    */
   public function update(Request $request, $id)
   {
-      $user = auth()->user();
       $plantType = PlantType::findOrFail($id);
       
-      if ($plantType->userId != $user->id) {
-          return response(null, Response::HTTP_OK);
+      if ($this::validatePlantTypeOwner($id) == false) {
+          return response(null, 203);
       }      
 
       foreach($plantType as $key => $value) {
@@ -103,9 +101,21 @@ class PlantTypeController extends Controller
    */
   public function destroy($id)
   {
-    
+      Crud::destroy($id);
+
+      return response(null, Response::HTTP_OK);
   }
+    
+  private function validatePlantTypeOwner($plantTypeId) {
+      $user = auth()->user();
+      $plantType = PlantType::findOrFail($plantTypeId);
   
+      if ($plantType->userId == $user->id) {
+         return true;
+      } else {
+         return false;   
+      }
+  }   
 }
 
 ?>
