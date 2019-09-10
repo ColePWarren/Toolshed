@@ -14,7 +14,7 @@ class PlantTypeController extends Controller
    */
   public function index()
   {
-    
+      return response(PlantType::all()->jsonSerialize(), Response::HTTP_OK);
   }
 
   /**
@@ -24,7 +24,29 @@ class PlantTypeController extends Controller
    */
   public function create()
   {
-    
+    $user = auth()->user();
+    $newPlantType = new PlantType();
+    $newPlantType->userId = $user->id;
+    $newPlantType->plantName = 'I need a name!';
+    $newPlantType->maxPH = null;
+    $newPlantType->minPH> = null;
+    $newPlantType->maxTemp = null;
+    $newPlantType->minTemp = null;
+    $newPlantType->minDailySunlightHours = null;
+    $newPlantType->maxDailySunlightHours = null;
+    $newPlantType->dayToGerminate = null;
+    $newPlantType->daysToVegitativeFromGermination = null;
+    $newPlantType->daysToBloomFromGermination = null;
+    $newPlantType->daysToHarvestFromGermination = null;
+    $newPlantType->desiredDaysBetweenHarvests = null;
+    $newPlantType->dollarValuePerHarvest = null;
+    $newPlantType->seedlingNutrientNeeds = '';
+    $newPlantType->vegitativeNutrientNeeds = '';
+    $newPlantType->pruningTips = '';
+    $newPlantType->imageLink = '';
+
+    return response($newPLantType->jsonSerialize(), Response::HTTP_CREATED);
+
   }
 
 
