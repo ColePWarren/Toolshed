@@ -47,7 +47,7 @@ class PlantInstanceController extends Controller
   {
       $plantInstance = PlantInstance::findOrFail($id);
       
-      if (PlantInstance::validatePlantTypeOwner($id) == false) {
+      if (PlantInstance::validatePlantInstanceOwner($id) == false) {
           return response(null, 203);
       }  
       
