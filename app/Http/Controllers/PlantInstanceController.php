@@ -14,7 +14,7 @@ class PlantInstanceController extends Controller
    */
   public function index()
   {
-    
+    return response(PlantInstance::all()->jsonSerialize(), Response::HTTP_OK);
   }
 
   /**
@@ -24,7 +24,15 @@ class PlantInstanceController extends Controller
    */
   public function create()
   {
-    
+        $user = auth()->user();
+        $newPlantInstance = new PlantInstance();
+        $newPlantInstance->userId = $user->id;
+        $newPlantInstance->plantTypeId = null;
+        $newPlantInstance->plantName = 'I need a name!';
+        $newPlantInstance->daysOld = null;
+        $newPlantInstance->birthday = null;
+        $newPlantInstance->plantMaturity = '';
+
   }
 
  
