@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('users', 'UsersController');
-Route::resource('event', 'EventsController');
-Route::resource('plantInstance', 'PlantInstancesController');
-Route::resource('plantType', 'PlantTypesController');
+Route::resource('users', 'UserController');
+Route::resource('event', 'EventController');
+Route::resource('plantInstance', 'PlantInstanceController');
+Route::resource('plantType', 'PlantTypeController');
