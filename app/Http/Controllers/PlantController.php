@@ -31,34 +31,34 @@ class PlantController extends Controller
    * Store a newly created resource in storage.
    *
    * @return Response
-   */
+
   public function store(Request $request)
   {
     
   }
-
+   */
   /**
    * Display the specified resource.
    *
    * @param  int  $id
    * @return Response
-   */
+
   public function show($id)
   {
     
   }
-
+   */
   /**
    * Show the form for editing the specified resource.
    *
    * @param  int  $id
    * @return Response
-   */
+
   public function edit($id)
   {
     
   }
-
+   */
   /**
    * Update the specified resource in storage.
    *
