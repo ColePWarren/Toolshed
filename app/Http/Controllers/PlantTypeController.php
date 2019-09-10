@@ -56,9 +56,43 @@ class PlantTypeController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(Request $request, $id)
   {
-    
+      $user = auth()->user();
+      $plantType = PlantType::findOrFail($id);
+      
+      if ($plantType->userId != $user->id) {
+          return response(null, Response::HTTP_OK);
+      }      
+
+      foreach($plantType as $key => $value) {
+        $plantType[$key] = $request->$key;
+      }
+      
+      //Commenting out below code, will test later and see if foreach loop is a solid solution.
+      /*
+      $plantType->plantName = 'I need a name!';
+      $plantType->maxPH = $request;
+      $plantType->minPH> = $request;
+      $plantType->maxTemp = $request;
+      $plantType->minTemp = $request;
+      $plantType->minDailySunlightHours = $request;
+      $plantType->maxDailySunlightHours = $request;
+      $plantType->dayToGerminate = $request;
+      $plantType->daysToVegitativeFromGermination = $request;
+      $plantType->daysToBloomFromGermination = $request;
+      $plantType->daysToHarvestFromGermination = $request;
+      $plantType->desiredDaysBetweenHarvests = $request;
+      $plantType->dollarValuePerHarvest = $request;
+      $plantType->seedlingNutrientNeeds = $request;
+      $plantType->vegitativeNutrientNeeds = $request;
+      $plantType->pruningTips = $request;
+      $plantType->imageLink = $request;
+      */
+      
+      $plantType->save();
+
+      return response(null, Response::HTTP_OK);
   }
 
   /**
