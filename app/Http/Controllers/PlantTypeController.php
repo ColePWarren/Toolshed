@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PlantController extends Controller 
+class PlantTypeController extends Controller 
 {
 
   /**
