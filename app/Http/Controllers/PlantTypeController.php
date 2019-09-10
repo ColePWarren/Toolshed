@@ -59,7 +59,7 @@ class PlantTypeController extends Controller
   {
       $plantType = PlantType::findOrFail($id);
       
-      if ($this::validatePlantTypeOwner($id) == false) {
+      if (PlantType::validatePlantTypeOwner($id) == false) {
           return response(null, 203);
       }      
 
@@ -101,21 +101,11 @@ class PlantTypeController extends Controller
    */
   public function destroy($id)
   {
-      Crud::destroy($id);
+      PlantType::destroy($id);
 
       return response(null, Response::HTTP_OK);
   }
     
-  private function validatePlantTypeOwner($plantTypeId) {
-      $user = auth()->user();
-      $plantType = PlantType::findOrFail($plantTypeId);
-  
-      if ($plantType->userId == $user->id) {
-         return true;
-      } else {
-         return false;   
-      }
-  }   
 }
 
 ?>
