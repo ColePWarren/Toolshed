@@ -1,5 +1,5 @@
 # Toolshed
-Toolshed is a Laravel project I created to manage hydroponic crops. 
+Toolshed is a Laravel Homestead web app I created to manage hydroponic crops. 
 
 Todo:
 - Debug code after checking out updates
